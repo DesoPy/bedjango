@@ -19,9 +19,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 from notes.views import *
+from django.conf.urls.static import static
+
+from notes_app import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('notes/', include('notes.urls')),
+    path('admin/', admin.site.urls),  # http://127.0.0.1:8000/admin/
+    # path('notes/', include('notes.urls')),   # http://127.0.0.1:8000/notes/
+    path('page/', page),   # http://127.0.0.1:8000/page/
+    path('index/', index),   # http://127.0.0.1:8000/index/
 ]
