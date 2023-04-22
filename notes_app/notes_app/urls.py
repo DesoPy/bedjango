@@ -22,6 +22,9 @@ from django.urls import path, include
 from notes.views import *
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('notes/', include('notes.urls')),
+    path('admin/', admin.site.urls),  # http://127.0.0.1:8000/admin/
+    path('notes/', include('notes.urls')),   # http://127.0.0.1:8000/notes/
+    path('page/', page),   # http://127.0.0.1:8000/page/
+    path('tamp/', tamp),
+    path('user/', user),
 ]
