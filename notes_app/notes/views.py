@@ -6,8 +6,12 @@ User = get_user_model()
 users = User.objects.all()
 
 
-def index(request):  # HttpRequest
-    return HttpResponse('Hello from Notes app.')
+def index(request):
+    return render(request, 'index.html')
+
+
+# def index(request):  # HttpRequest
+#     return HttpResponse('Hello from Notes app.')
 
 
 def index_with_html(request, noteshtmlid):  # HttpRequest
@@ -36,8 +40,6 @@ def tamp(request):
 def user(request):
     return render(request, 'sample.html', {
         'User': User.objects.all(),
-
-
     })
 
 
