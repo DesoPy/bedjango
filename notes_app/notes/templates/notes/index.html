@@ -8,9 +8,19 @@
 
 </head>
 <body>
+
+{% block content %}
   <div>
 	<h1>Ласкаво просимо на мою сторінку!</h1>
 	<p>Це мій перший Django проект з CSS стилізацією.</p>
+      <ul>
+        {% for note in notes %}
+            <h2>{{ note.title }}</h2>
+            <p>{{ note.text }}</p>
+            <p>Reminder: {{ note.reminder }}</p>
+          {% endfor %}
+      </ul>
   </div>
+{% endblock %}
 </body>
 </html>
