@@ -1,10 +1,8 @@
+from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render
-from django.shortcuts import HttpResponse
+from .models import Notes
 
 
-def index(request):  # HttpRequest
-    return HttpResponse('Hello from Notes app.')
-
-
-def index_with_html(request):  # HttpRequest
-    return HttpResponse('<h1>Hello from Notes app.</h1>')
+def index(request):
+    notes = Notes.objects.all()
+    return render(request, 'notes/index.html', {'notes': notes})
