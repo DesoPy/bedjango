@@ -19,7 +19,7 @@ class Notes(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
-        return reverse('edit_note', args=[str(self.id)])
+        return reverse('edit', args=[str(self.id)])
 
     class Meta:
         verbose_name_plural = 'Notes'
