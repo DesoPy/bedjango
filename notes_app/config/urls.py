@@ -18,18 +18,16 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from notes.views import *
-from notes import views
-
+from notes.views import index
+from notes.views import create_note, NoteDetailView, NoteUpdateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),  # http://127.0.0.1:8000/admin/
-    path('notes/', include('notes.urls')),   # http://127.0.0.1:8000/notes/
-    path('index/', index),   # http://127.0.0.1:8000/index/
-    path('', views.index, name='notes-list'),
-    path('create-note/', views.create_note, name='create-note'),
+    path('admin/', admin.site.urls),
+    path('', index, name='index'),
+    path('notes/', include('notes.urls')),
+    path('create-note/', create_note, name='create-note'),
     path('notes/note/<int:pk>/', NoteDetailView.as_view(), name='note-detail'),
-    path('notes/note/<int:pk>/edit/', views.edit_note, name='edit-note'),
+    path('notes/note/<int:pk>/edit_note/', NoteUpdateView.as_view(), name='edit_note'),
 ]
 
 # if settings.DEBUG:

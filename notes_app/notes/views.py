@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from .models import Notes
@@ -29,7 +30,7 @@ class NoteDetailView(DetailView):
     template_name = 'notes/note_detail.html'
 
 
-class NoteUpdateView(UpdateView):
+class NoteUpdateView(LoginRequiredMixin, UpdateView):
     model = Notes
     fields = ['title', 'text', 'reminder', 'category']
     template_name = 'notes/note_update.html'
