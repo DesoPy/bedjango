@@ -44,6 +44,6 @@ def edit_note(request, pk):
         form = CreateNoteForm(request.POST, instance=note)
         if form.is_valid():
             form.save()
-            return redirect('note-detail', pk=pk)
+            return redirect('edit_note', pk=pk)
     return render(request, 'notes/note_update.html', {'form': form})
 

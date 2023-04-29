@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Categories(models.Model):
@@ -16,6 +17,9 @@ class Notes(models.Model):
     text = models.TextField(blank=True)
     reminder = models.CharField(max_length=255)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse('edit_note', args=[str(self.id)])
 
     class Meta:
         verbose_name_plural = 'Notes'
