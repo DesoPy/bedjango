@@ -10,17 +10,30 @@
 <body>
 
 {% block content %}
+
   <div>
-	<h1>Ласкаво просимо на мою сторінку!</h1>
-	<p>Це мій перший Django проект з CSS стилізацією.</p>
+    <a href="{% url 'create-note' %}">Create Note</a>
+  </div>
+
+  <div>
+    <h1>Ласкаво просимо на мою сторінку!</h1>
+    <p>Це мій перший Django проект з CSS стилізацією.</p>
+    {% if notes %}
       <ul>
         {% for note in notes %}
-            <h2>{{ note.title }}</h2>
+          <li>
+            <h2><a href="{% url 'note-detail' note.id %}">{{ note.title }}</a></h2>
             <p>{{ note.text }}</p>
             <p>Reminder: {{ note.reminder }}</p>
-          {% endfor %}
+          </li>
+        {% endfor %}
       </ul>
+    {% else %}
+      <p>У вас ще немає жодної нотатки.</p>
+    {% endif %}
   </div>
+
 {% endblock %}
+
 </body>
 </html>
