@@ -1,5 +1,5 @@
 """
-URL configuration for notes_app project.
+URL configuration for config project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -18,10 +18,17 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-
-from notes.views import *
+from notes.views import index
+from notes.views import create_note, NoteDetailView, NoteUpdateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index, name='index'),
     path('notes/', include('notes.urls')),
+    path('create-note/', create_note, name='create-note'),
+    path('notes/note/<int:pk>/', NoteDetailView.as_view(), name='note-detail'),
+    path('notes/note/<int:pk>/edit/', NoteUpdateView.as_view(), name='edit_note'),
 ]
+
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,7 +1,10 @@
 from django.urls import path
 from .views import *
+from notes.views import NoteUpdateView
 
 urlpatterns = [
-    path('', index),  # http://127.0.0.1:8000/notes/
-    path('noteshtml/', index_with_html),  # http://127.0.0.1:8000/notes/noteshtml/
+    path('', index, name='index'),
+    path('create-note/', create_note, name='create-note'),
+    path('notes/note/<int:pk>/', NoteDetailView.as_view(), name='note-detail'),
+    path('notes/note/<int:pk>/edit_note/', NoteUpdateView.as_view(), name='edit_note'),
 ]
