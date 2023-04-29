@@ -12,7 +12,7 @@
     <p>{{ note.text }}</p>
     <p>Reminder: {{ note.reminder }}</p>
     <p>Category: {{ note.category }}</p>
-    <a href="{% url 'edit_note' pk=note.pk %}">Edit</a>
+    <a href="{% url 'edit_note' pk=note.pk %}" class="btn btn-primary">Edit</a>
   </div>
 </body>
 </html>
