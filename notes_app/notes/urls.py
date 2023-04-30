@@ -1,7 +1,12 @@
 from django.urls import path
+
+from . import views
 from .views import *
 
+
 urlpatterns = [
-    path('', index),  # http://127.0.0.1:8000/notes/
-    path('noteshtml/', index_with_html),  # http://127.0.0.1:8000/notes/noteshtml/
+    path('', index, name='index'),  # http://127.0.0.1:8000/index/
+    path('create/', create_note_view, name='create_note'),
+    path('note/<int:pk>/', views.note_detail_view, name='note_detail'),
+    path('note/<int:id>/edit/', views.edit_note_view, name='edit_note'),
 ]

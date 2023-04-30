@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Урок 39: "HTML, CSS і основи мови розмітки"</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+
+{% block content %}
+
+<h1>Створення нотатки</h1>
+<form method="POST" action="{% url 'create_note' %}">
+    {% csrf_token %}
+    <label for="title">Назва нотатки:</label>
+    <input type="text" id="title" name="title" required><br>
+
+    <label for="text">Текст нотатки:</label>
+    <textarea id="text" name="text"></textarea><br>
+
+    <label for="reminder">Нагадування:</label>
+    <input type="text" id="reminder" name="reminder"><br>
+
+    <label for="category">Категорія:</label>
+    <select id="category" name="category">
+    {% for category in categories %}
+    <option value="{{ category.id }}">{{ category.title }}</option>
+    {% endfor %}
+    </select><br>
+
+    <input type="submit" value="Створити">
+</form>
+
+  <div>
+	<h1>Ласкаво просимо на мою сторінку!</h1>
+	<p>Це мій перший Django проект з CSS стилізацією.</p>
+      <ul>
+        {% for note in notes %}
+          <div class="note">
+            <h2>{{ note.title }}</h2>
+            <p>{{ note.text }}</p>
+            <p>Reminder: {{ note.reminder }}</p>
+            <a href="{% url 'edit_note' note.id %}">Редагувати</a>
+          </div>
+        {% endfor %}
+      </ul>
+  </div>
+{% endblock %}
+</body>
+</html>
