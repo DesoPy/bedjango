@@ -18,3 +18,9 @@ class CreateNoteForm(forms.ModelForm):
         if commit:
             note.save()
         return note
+
+
+class NoteForm(forms.ModelForm):
+    class Meta:
+        model = Notes
+        fields = ('title', 'text', 'reminder', 'category')

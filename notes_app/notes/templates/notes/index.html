@@ -38,10 +38,13 @@
 	<p>Це мій перший Django проект з CSS стилізацією.</p>
       <ul>
         {% for note in notes %}
+          <div class="note">
             <h2>{{ note.title }}</h2>
             <p>{{ note.text }}</p>
             <p>Reminder: {{ note.reminder }}</p>
-          {% endfor %}
+            <a href="{% url 'edit_note' note.id %}">Редагувати</a>
+          </div>
+        {% endfor %}
       </ul>
   </div>
 {% endblock %}
