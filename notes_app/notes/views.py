@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -74,3 +75,15 @@ def note_detail_view(request, pk):
         form.save()
         return redirect('note_detail', pk=pk)
     return render(request, 'notes/note_detail.html', {'note': note, 'form': form})
+
+
+@login_required
+def delete_note_view(request, id):
+    note = get_object_or_404(Notes, id=id)
+    if request.method == 'POST':
+        note.delete()
+        messages.success(request, 'Нотатку успішно видалено!')
+        return redirect('index')
+    return render(request, 'notes/delete_note.html', {'note': note})
+
+

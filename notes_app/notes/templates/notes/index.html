@@ -42,6 +42,10 @@
             <h2>{{ note.title }}</h2>
             <p>{{ note.text }}</p>
             <p>Reminder: {{ note.reminder }}</p>
+            <form method="POST" action="{% url 'delete_note' note.id %}">
+              {% csrf_token %}
+              <input type="submit" value="Видалити">
+            </form>
             <a href="{% url 'edit_note' note.id %}">Редагувати</a>
           </div>
         {% endfor %}
