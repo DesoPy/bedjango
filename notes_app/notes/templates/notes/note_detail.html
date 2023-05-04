@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Note Detail</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+{% block content %}
+
+<nav class="navbar" style="background-color: #cbb9b9;">
+  <a class="navbar-brand" href="{% url 'index' %}">Головна сторінка</a>
+</nav>
+
+  <h1>{{ note.title }}</h1>
+  <p>{{ note.text }}</p>
+  <p>Reminder: {{ note.reminder }}</p>
+  <p>Category: {{ note.category }}</p>
+
+  <a href="{% url 'edit_note' note.id %}">Редагувати</a>
+
+{% endblock %}
+</body>
+</html>
