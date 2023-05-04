@@ -8,6 +8,11 @@
 </head>
 <body>
 {% block content %}
+
+<nav class="navbar" style="background-color: #cbb9b9;">
+  <a class="navbar-brand" href="{% url 'index' %}">Головна сторінка</a>
+</nav>
+
   <h1>{{ note.title }}</h1>
   <p>{{ note.text }}</p>
   <p>Reminder: {{ note.reminder }}</p>
